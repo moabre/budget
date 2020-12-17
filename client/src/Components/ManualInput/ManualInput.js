@@ -37,7 +37,6 @@ class ManualInput extends Component {
       date: this.state.date,
       total: `TOTAL ${this.state.total}`,
     })
-    window.location.reload()
   }
 
   render() {
