@@ -23,6 +23,7 @@ class Expense extends Component {
 
   getAxios = (event) => {
     event.preventDefault()
+
     axios
       .get(`http://localhost:8080/dashboard?${this.state.date}`)
       .then((res) => {
@@ -30,17 +31,14 @@ class Expense extends Component {
       })
   }
 
-  showSpending = () => {
-    // if (this.state.expense.length === 0) {
-    //   return null
-    // } else {
-    console.log(this.state.expense[0])
-
-    this.state.expense.map((i) => <div key={1}>{i}</div>)
-  }
+  // showSpending = () => {
+  //   console.log(this.state.expense.length)
+  //   if (this.state.expense.length === '0') {
+  //     return <p>there are no expenses for that date</p>
+  //   }
+  // }
 
   render() {
-    console.log(this.state.expense)
     if (!this.props.isVisible) {
       return null
     } else {
@@ -61,11 +59,10 @@ class Expense extends Component {
                 className='label__input'
               />
               <button onClick={this.getAxios} className='button__login'>
-                Submit
+                Search
               </button>
             </form>
           </div>
-
           <div>
             {this.state.expense.map((i) => (
               <p>{i}</p>

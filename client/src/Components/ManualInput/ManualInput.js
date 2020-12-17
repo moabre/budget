@@ -32,11 +32,17 @@ class ManualInput extends Component {
 
   axiosPost = (event) => {
     event.preventDefault()
-    axios.post('http://localhost:8080/dashboard', {
-      expense: this.state.expense,
-      date: this.state.date,
-      total: `TOTAL ${this.state.total}`,
-    })
+    axios
+      .post('http://localhost:8080/dashboard', {
+        expense: this.state.expense,
+        date: this.state.date,
+        total: `TOTAL ${this.state.total}`,
+      })
+      .then((res) => {
+        let url = window.location.href.split('home', 1)
+        window.location.href = url
+        console.log(url)
+      })
   }
 
   render() {

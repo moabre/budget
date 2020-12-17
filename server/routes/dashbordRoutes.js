@@ -55,7 +55,6 @@ router.get('/', (req, res) => {
   console.log(moment(req._parsedUrl.query, 'MM-DD-YYYY').unix())
   let dayAsked = moment(req._parsedUrl.query, 'MM-DD-YYYY').unix()
   let allExpenses = readAllExpenses()
-  // let newOne = []
   // reset the json file
   fs.writeFileSync('./data/searchedexpenses.json', JSON.stringify([]))
   for (let i = 0; i < allExpenses.length; i++) {
@@ -72,6 +71,7 @@ router.get('/', (req, res) => {
     }
   }
   let searchSpent = readSearch()
+  console.log(searchSpent)
   let newSpent = []
   for (let i = 0; i < searchSpent.length; i++) {
     newSpent = newSpent.concat(searchSpent[i])

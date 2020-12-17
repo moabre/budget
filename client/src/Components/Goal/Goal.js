@@ -11,6 +11,7 @@ class Goal extends Component {
     total: '',
     updateBudget: false,
     spent: '',
+    new: false,
   }
 
   componentDidMount() {
@@ -22,6 +23,14 @@ class Goal extends Component {
       })
     })
 
+    axios.get('http://localhost:8080/tesseract').then((res) => {
+      this.setState({
+        spent: res.data,
+      })
+    })
+  }
+
+  componentDidUpdate() {
     axios.get('http://localhost:8080/tesseract').then((res) => {
       this.setState({
         spent: res.data,
@@ -48,9 +57,28 @@ class Goal extends Component {
 
   axiosPost = (event) => {
     event.preventDefault()
-    this.setState({ updateBudget: false })
-    axios.post('http://localhost:8080/goal', this.state)
-    window.location.reload()
+    let expense = document.getElementById('budget')
+    this.setState({ total: expense.value })
+    this.setState({ updateBudget: false, new: true })
+    axios
+      .post('http://localhost:8080/goal', {
+        startDate: this.state.startDate,
+        endDate: this.state.endDate,
+        total: expense.value,
+        spent: this.state.spent,
+        new: true,
+        updateBudget: false,
+      })
+      .then((res) => {
+        console.log(this.state)
+      })
+  }
+  axiosUpdate = (event) => {
+    event.preventDefault()
+    this.setState({ updateBudget: false, new: true })
+    axios.post('http://localhost:8080/goal', this.state).then((res) => {
+      console.log(this.state)
+    })
   }
   showUpdate = () => {
     this.setState({ updateBudget: true })
@@ -64,7 +92,11 @@ class Goal extends Component {
 
     if (!this.props.isVisible) {
       return null
-    } else if (this.state.total === '' || this.state.total === undefined) {
+    } else if (
+      (this.state.total === '' || this.state.total === undefined) &&
+      this.state.new === false
+    ) {
+      console.log(this.state.total)
       return (
         <div>
           <form action='' className='expense'>
@@ -99,10 +131,10 @@ class Goal extends Component {
             <input
               type='text'
               name='expense'
-              id='expense'
+              id='budget'
               placeholder='budget amount'
-              onChange={this.onExpenseChange}
-              value={this.state.total}
+              // onChange={this.onExpenseChange}
+              // value={this.state.total}
               className='label__input'
             />
             <button onClick={this.axiosPost} className='button__login'>
@@ -152,7 +184,7 @@ class Goal extends Component {
               value={this.state.total}
               className='label__input'
             />
-            <button onClick={this.axiosPost} className='button__login'>
+            <button onClick={this.axiosUpdate} className='button__login'>
               Submit
             </button>
           </form>
@@ -161,17 +193,38 @@ class Goal extends Component {
     } else {
       return (
         <div className='goal'>
+          <h2>
+            Budgeted <b>${this.state.total}</b>
+          </h2>{' '}
+          <div>
+            <p>
+              {' '}
+              Budget Start Date:{' '}
+              <b>
+                {moment(this.state.startDate, 'MM-DD-YYYY').format(
+                  'MMMM Do, YYYY'
+                )}
+              </b>{' '}
+            </p>
+            <p>
+              {' '}
+              Budget End Date:{' '}
+              <b>
+                {moment(this.state.endDate, 'MM-DD-YYYY').format(
+                  'MMMM Do, YYYY'
+                )}
+              </b>{' '}
+            </p>
+          </div>
+          <div className='left'>
+            <p>
+              You have spent <b>${this.state.spent}</b> in this time frame{' '}
+            </p>{' '}
+          </div>
           <p>
-            You have budgeted {this.state.total} for your budget from{' '}
-            {this.state.startDate} to {this.state.endDate}{' '}
+            You have <b>{Math.floor(days)}</b> days left until your budget is
+            done
           </p>
-          <p>
-            You have spent {this.state.spent} this much from{' '}
-            {this.state.startDate} to {this.state.endDate}{' '}
-          </p>
-
-          <p>You have {days} days left until your budget is done</p>
-
           <button onClick={this.showUpdate} className='button__goal'>
             Update Budget?
           </button>

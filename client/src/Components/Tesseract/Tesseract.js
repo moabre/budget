@@ -29,18 +29,23 @@ function Tesseract({
     doOCR()
   })
   const getApi = () => {
-    axios.post('http://localhost:8080/tesseract', {
-      date: date,
-      item: firstItem,
-      last: lastItem,
-      text: ocr,
-    })
-    let url = window.location.href.split('home', 1)
-    changeInput()
-    window.location.href = url
+    axios
+      .post('http://localhost:8080/tesseract', {
+        date: date,
+        item: firstItem,
+        last: lastItem,
+        text: ocr,
+      })
+      .then((res) => {
+        let url = window.location.href.split('home', 1)
+        setOcr('Recognizing...')
+        changeInput()
+        window.location.href = url
+      })
   }
 
   const showStatus = () => {
+    console.log(ocr)
     if (ocr !== 'Recognizing...' && input) {
       return (
         <div className='uploaded'>
@@ -52,6 +57,7 @@ function Tesseract({
   }
 
   const itsLoading = () => {
+    console.log(ocr)
     if (ocr === 'Recognizing...' && input) {
       return (
         <div>
