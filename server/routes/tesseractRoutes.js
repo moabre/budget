@@ -64,7 +64,9 @@ router.post('/', (req, res) => {
   let finalReceipt = combinedReceipt.split('\n')
   // removed subtotal as it was overlapping with the total
   finalReceipt.push(date)
-  fs.writeFileSync('./data/parsedreceipts.json', JSON.stringify(finalReceipt))
+  let receipts = readParsed()
+  receipts.push(finalReceipt)
+  fs.writeFileSync('./data/parsedreceipts.json', JSON.stringify(receipts))
 
   //adding manual entries to the total
   let manual = readUrl()
@@ -92,8 +94,9 @@ router.post('/', (req, res) => {
   }
   let parsedData = readParsed()
   let allExpenses = readAllExpenses()
-  allExpenses.push(parsedData)
-  fs.writeFileSync('./data/allexpenses.json', JSON.stringify(allExpenses))
+  let newTotal = allExpenses.concat(parsedData)
+  console.log(newTotal)
+  fs.writeFileSync('./data/allexpenses.json', JSON.stringify(newTotal))
 })
 
 function readGoal() {

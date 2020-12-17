@@ -20,9 +20,9 @@ const SignUp = ({ history }) => {
   )
 
   return (
-    <div>
+    <div className='login'>
       <h1>Sign up</h1>
-      <form onSubmit={handleSignUp}>
+      <form onSubmit={handleSignUp} className='login__form'>
         <label>
           Email
           <input name='email' type='email' placeholder='Email' />
