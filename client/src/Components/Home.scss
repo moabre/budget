@@ -1,0 +1,10 @@
+.button {
+  &__tray {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.signout {
+  display: none;
+}

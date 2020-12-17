@@ -1,0 +1,135 @@
+@use '../Styles/variable' as *;
+@use '../Styles/typography' as *;
+@use '../Styles/mixin' as *;
+
+.header {
+  background-color: #fcfcfc;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 200px;
+  align-content: center;
+
+  @include tablet {
+    height: 100px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__link {
+    padding: 30.39px 0 0 0;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    @include tablet {
+      padding: 0px 0px 0px 0px;
+    }
+  }
+
+  &__logo {
+    height: 80px;
+    box-sizing: content-box;
+    @include tablet {
+      height: 28px;
+      flex-direction: row;
+      justify-content: initial;
+      padding: 32px 0 32px 32px;
+    }
+    @include desktop {
+      padding: 32px 0 32px 130px;
+    }
+  }
+  &__button {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 24px 0px 0px 0px;
+    box-sizing: content-box;
+    @include tablet {
+      width: 221px;
+      margin: 0 0 0 0;
+      padding: 32px 32px 32px 0px;
+      height: 36px;
+    }
+    @include desktop {
+      padding: 32px 130px 32px 0px;
+    }
+  }
+}
+
+.button {
+  &__warehouse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include mH3;
+    width: 164px;
+    height: 36px;
+    text-decoration: none;
+    color: black;
+    @include tablet {
+      @include tdH3;
+    }
+  }
+
+  &__inventory {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 164px;
+    @include mH3;
+    height: 36px;
+    text-decoration: none;
+    color: black;
+    @include tablet {
+      @include tdH3;
+    }
+  }
+}
+
+.active {
+  color: $watermelon;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  color: black;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}

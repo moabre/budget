@@ -1,0 +1,67 @@
+//Mobile Text Styles
+@mixin mH1 {
+  font-size: 28px;
+  line-height: 36px;
+}
+
+@mixin mH2 {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+@mixin mH3 {
+  font-size: 13px;
+  line-height: 20px;
+}
+
+@mixin mH4 {
+  font-size: 11px;
+  line-height: 16px;
+}
+
+@mixin mP1 {
+  font-size: 15px;
+  line-height: 26px;
+}
+
+@mixin mP2 {
+  font-size: 13px;
+  line-height: 20px;
+}
+
+@mixin mP3 {
+  font-size: 11px;
+  line-height: 16px;
+}
+
+//Desktop & Tablet Text Styles
+
+@mixin tdH1 {
+  font-size: 32px;
+  line-height: 40px;
+}
+
+@mixin tdH2 {
+  font-size: 24px;
+  line-height: 32px;
+}
+@mixin tdH3 {
+  font-size: 14px;
+  line-height: 22px;
+}
+@mixin tdH4 {
+  font-size: 12px;
+  line-height: 18px;
+}
+@mixin tdP1 {
+  font-size: 16px;
+  line-height: 28px;
+}
+@mixin tdP2 {
+  font-size: 14px;
+  line-height: 22px;
+}
+@mixin tdP3 {
+  font-size: 12px;
+  line-height: 18px;
+}

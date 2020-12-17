@@ -1,0 +1,59 @@
+//linking dependencies
+@use './variable' as *;
+@use './typography' as *;
+
+//tablet rules
+@mixin tablet {
+    @media (min-width: $tablet-breakpoint){
+        @content;
+    }
+}
+
+//desktop rules
+@mixin desktop {
+    @media (min-width: $desktop-breakpoint){
+        @content;
+    }
+}
+
+//content width vw
+@mixin maximum-content-width {
+    width: 90vw;
+
+    @include tablet {
+        width: 93.75vw;
+    }
+
+    @include desktop {
+        width: 1080px;
+    }
+}
+
+//bottom border
+@mixin bottom-border {
+    &::after {
+        content: "";
+        position: absolute;
+        border-bottom: 1px solid $cloud;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
+}
+
+//main content style
+@mixin main-content {
+    @include maximum-content-width;
+    margin: -4rem auto 0 auto;
+    background-color: white;
+    border-radius: 3px 3px 0 0;
+}
+
+//page-title style
+@mixin page-title {
+    height: 4rem;
+    margin-bottom: 1rem;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: flex-end;
+}
