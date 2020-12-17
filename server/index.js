@@ -6,6 +6,7 @@ const PORT = 8080
 const dashboardRoutes = require('./routes/dashbordRoutes')
 const tesseractRoutes = require('./routes/tesseractRoutes')
 const goalRoutes = require('./routes/goalRoutes')
+const headerRoutes = require('./routes/headerRoutes')
 
 app.use(express.json())
 app.use(cors())
@@ -14,6 +15,7 @@ app.use(cors())
 app.use('/dashboard', dashboardRoutes)
 app.use('/tesseract', tesseractRoutes)
 app.use('/goal', goalRoutes)
+app.use('/header', goalRoutes)
 
 app.listen(PORT, () => {
   console.log(`Express server listening on ${PORT}`)

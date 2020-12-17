@@ -39,9 +39,10 @@ class ManualInput extends Component {
         total: `TOTAL ${this.state.total}`,
       })
       .then((res) => {
-        let url = window.location.href.split('home', 1)
-        window.location.href = url
-        console.log(url)
+        // let url = window.location.href.split('home', 1)
+        // window.location.href = url
+        // console.log(url)
+        window.location.reload()
       })
   }
 
