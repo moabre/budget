@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import app from '../../firebase.js'
+import './Receipt.scss'
 
-class App extends Component {
+class Receipt extends Component {
   state = {
     // Initially, no file is selected
     selectedFile: null,
@@ -105,7 +106,7 @@ class App extends Component {
   fileImage = () => {
     // rendering picture if it exists
     if (this.state.ulink) {
-      return <img src={this.state.ulink} alt='upload' />
+      return <img src={this.state.ulink} alt='upload' className='upload' />
     }
   }
   enterInfo = (event) => {
@@ -113,13 +114,16 @@ class App extends Component {
     this.props.setItem(this.state.firstWord)
     this.props.setLast(this.state.lastWord)
     this.props.setDate(this.state.date)
+    this.props.setInput()
   }
 
   input = () => {
     if (this.state.input) {
       return (
-        <>
-          <label htmlFor='date'>Enter Date of Receipt</label>
+        <div className='inputinfo'>
+          <label htmlFor='date' className='label'>
+            Enter Date of Receipt
+          </label>
           <input
             type='text'
             id='date'
@@ -127,8 +131,11 @@ class App extends Component {
             name='text'
             onChange={this.onDateChange}
             value={this.state.date}
+            className='label__input'
           />
-          <label htmlFor='word'>Enter Characters Before Your Item</label>
+          <label htmlFor='word' className='label'>
+            Enter Characters Before Your Item
+          </label>
           <input
             type='text'
             id='word'
@@ -136,8 +143,11 @@ class App extends Component {
             name='text'
             onChange={this.onWordChange}
             value={this.state.firstWord}
+            className='label__input'
           />
-          <label htmlFor='word'>Enter Characters After Your Total</label>
+          <label htmlFor='word' className='label'>
+            Enter Characters After Your Total
+          </label>
           <input
             type='text'
             id='lastword'
@@ -145,9 +155,12 @@ class App extends Component {
             name='text'
             onChange={this.onLastChange}
             value={this.state.lastWord}
+            className='label__input'
           />
-          <button onClick={this.enterInfo}>Enter Information </button>
-        </>
+          <button onClick={this.enterInfo} className='button__login'>
+            Enter Information{' '}
+          </button>
+        </div>
       )
     }
   }
@@ -157,17 +170,20 @@ class App extends Component {
       return null
     } else {
       return (
-        <div>
-          <div>
-            <input type='file' id='image' onChange={this.onFileChange} />
-            <button onClick={this.onFileUpload}>Upload!</button>
+        <>
+          <div className='expense'>
+            <h1>Receipt Input</h1>
+            <div>
+              <input type='file' id='image' onChange={this.onFileChange} />
+              <button onClick={this.onFileUpload}>See Receipt!</button>
+            </div>
+            {this.input()}
           </div>
-          {this.input()}
           {this.fileImage()}
-        </div>
+        </>
       )
     }
   }
 }
 
-export default App
+export default Receipt

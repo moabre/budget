@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { Component } from 'react'
+import './ManualInput.scss'
 
 class ManualInput extends Component {
   state = {
@@ -36,6 +37,7 @@ class ManualInput extends Component {
       date: this.state.date,
       total: `TOTAL ${this.state.total}`,
     })
+    window.location.reload()
   }
 
   render() {
@@ -44,36 +46,50 @@ class ManualInput extends Component {
       return null
     } else {
       return (
-        <form action=''>
-          <label htmlFor='date'>Date</label>
-          <input
-            type='text'
-            name='date'
-            id='date'
-            placeholder='mm/dd/yy'
-            onChange={this.onDateChange}
-            value={this.state.date}
-          />
-          <label htmlFor='expense'>Expense Name</label>
-          <input
-            type='text'
-            name='expense'
-            id='expense'
-            placeholder='Rent'
-            onChange={this.onExpenseChange}
-            value={this.state.expense}
-          />
-          <label htmlFor='amount'>Total</label>
-          <input
-            type='text'
-            name='amount'
-            id='amount'
-            placeholder='1000.00'
-            onChange={this.onTotalChange}
-            value={this.state.total}
-          />
-          <button onClick={this.axiosPost}>Submit</button>
-        </form>
+        <div className='expense'>
+          <form action='' className='manual'>
+            <h1>Input Expenses</h1>
+            <label htmlFor='date' className='label'>
+              Date
+            </label>
+            <input
+              type='text'
+              name='date'
+              id='date'
+              placeholder='mm/dd/yy'
+              onChange={this.onDateChange}
+              value={this.state.date}
+              className='label__input'
+            />
+            <label htmlFor='expense' className='label'>
+              Expense Name
+            </label>
+            <input
+              type='text'
+              name='expense'
+              id='expense'
+              placeholder='Rent'
+              onChange={this.onExpenseChange}
+              value={this.state.expense}
+              className='label__input'
+            />
+            <label htmlFor='amount' className='label'>
+              Total
+            </label>
+            <input
+              type='text'
+              name='amount'
+              id='amount'
+              placeholder='1000.00'
+              onChange={this.onTotalChange}
+              value={this.state.total}
+              className='label__input'
+            />
+            <button onClick={this.axiosPost} className='button__login'>
+              Submit
+            </button>
+          </form>
+        </div>
       )
     }
   }

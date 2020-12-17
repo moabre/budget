@@ -35,11 +35,11 @@ function Header() {
         </NavLink>
         <NavLink
           strict
-          to='/dashboard'
+          to='/home'
           activeClassName='active'
           className='button__inventory'
         >
-          Dashboard
+          Inputs
         </NavLink>
         <div class='dropdown'>
           <button class='dropbtn'>▼</button>
