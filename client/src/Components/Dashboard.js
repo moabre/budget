@@ -3,6 +3,7 @@ import Header from './Header/Header'
 import React, { Component } from 'react'
 import Goal from './Goal/Goal'
 import Expense from './Expense/Expense'
+import './Dashboard.scss'
 
 class Dashboard extends Component {
   state = {
@@ -32,15 +33,24 @@ class Dashboard extends Component {
     return (
       <>
         <Header />
-        <div className='button__tray'>
-          <button onClick={this.showGoals}>Goals</button>
-          <button onClick={this.showExpense}>Expenses</button>
+        <div className='mainpage'>
+          <div className='buttonhome'>
+            <button onClick={this.showGoals} className='buttonhome__item'>
+              Goals
+            </button>
+            <button onClick={this.showExpense} className='buttonhome__item'>
+              Expenses
+            </button>
+          </div>
+          <button onClick={() => app.auth().signOut()} className='signout'>
+            Sign out
+          </button>
+          <Goal isVisible={this.state.isGoalVisible} />
+          <Expense
+            isVisible={this.state.isExpenseVisible}
+            setURL={this.setURL}
+          />
         </div>
-        <button onClick={() => app.auth().signOut()} className='signout'>
-          Sign out
-        </button>
-        <Goal isVisible={this.state.isGoalVisible} />
-        <Expense isVisible={this.state.isExpenseVisible} setURL={this.setURL} />
       </>
     )
   }

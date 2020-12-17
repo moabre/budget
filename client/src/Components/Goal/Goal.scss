@@ -1,0 +1,23 @@
+.goal {
+  border: 1px transparent grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60vw;
+  border-radius: 5px;
+  padding-top: 30px;
+}
+.button {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  align-items: center;
+  &__goal {
+    width: 150px;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border-style: none;
+  }
+}

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import moment from 'moment'
+import './Goal.scss'
 
 class Goal extends Component {
   state = {
@@ -65,9 +66,11 @@ class Goal extends Component {
     } else if (this.state.total === '' || this.state.total === undefined) {
       return (
         <div>
-          <h1>Lets set a budget!</h1>
-          <form action=''>
-            <label htmlFor='date'>Start Date</label>
+          <form action='' className='expense'>
+            <h1>Lets set a budget!</h1>
+            <label htmlFor='date' className='label'>
+              Start Date
+            </label>
             <input
               type='text'
               name='date'
@@ -75,8 +78,11 @@ class Goal extends Component {
               placeholder='mm/dd/yyyy'
               onChange={this.onDateChange}
               value={this.state.startDate}
+              className='label__input'
             />
-            <label htmlFor='date'>End Date</label>
+            <label htmlFor='date' className='label'>
+              End Date
+            </label>
             <input
               type='text'
               name='date'
@@ -84,8 +90,11 @@ class Goal extends Component {
               placeholder='mm/dd/yyyy'
               onChange={this.onEndDate}
               value={this.state.endDate}
+              className='label__input'
             />
-            <label htmlFor='expense'>Amount</label>
+            <label htmlFor='expense' className='label'>
+              Amount
+            </label>
             <input
               type='text'
               name='expense'
@@ -93,17 +102,22 @@ class Goal extends Component {
               placeholder='budget amount'
               onChange={this.onExpenseChange}
               value={this.state.total}
+              className='label__input'
             />
-            <button onClick={this.axiosPost}>Submit</button>
+            <button onClick={this.axiosPost} className='button__login'>
+              Submit
+            </button>
           </form>
         </div>
       )
     } else if (this.state.updateBudget) {
       return (
-        <div>
-          <h1>Lets set a budget!</h1>
-          <form action=''>
-            <label htmlFor='date'>Start Date</label>
+        <div className='expense'>
+          <form action='' className='manual'>
+            <h1>Lets set a budget!</h1>
+            <label htmlFor='date' className='label'>
+              Start Date
+            </label>
             <input
               type='text'
               name='date'
@@ -111,8 +125,11 @@ class Goal extends Component {
               placeholder={this.state.startDate}
               onChange={this.onDateChange}
               value={this.state.startDate}
+              className='label__input'
             />
-            <label htmlFor='date'>End Date</label>
+            <label htmlFor='date' className='label'>
+              End Date
+            </label>
             <input
               type='text'
               name='date'
@@ -120,8 +137,11 @@ class Goal extends Component {
               placeholder={this.state.endDate}
               onChange={this.onEndDate}
               value={this.state.endDate}
+              className='label__input'
             />
-            <label htmlFor='expense'>Amount</label>
+            <label htmlFor='expense' className='label'>
+              Amount
+            </label>
             <input
               type='text'
               name='expense'
@@ -129,14 +149,17 @@ class Goal extends Component {
               placeholder={this.state.total}
               onChange={this.onExpenseChange}
               value={this.state.total}
+              className='label__input'
             />
-            <button onClick={this.axiosPost}>Submit</button>
+            <button onClick={this.axiosPost} className='button__login'>
+              Submit
+            </button>
           </form>
         </div>
       )
     } else {
       return (
-        <div>
+        <div className='goal'>
           <p>
             You have budgeted {this.state.total} for your budget from{' '}
             {this.state.startDate} to {this.state.endDate}{' '}
@@ -148,7 +171,9 @@ class Goal extends Component {
 
           <p>You have {days} days left until your budget is done</p>
 
-          <button onClick={this.showUpdate}>Update Budget</button>
+          <button onClick={this.showUpdate} className='button__goal'>
+            Update Budget?
+          </button>
           <p></p>
         </div>
       )

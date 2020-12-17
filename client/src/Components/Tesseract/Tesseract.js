@@ -3,7 +3,15 @@ import { createWorker } from 'tesseract.js'
 import axios from 'axios'
 import './Tesseract.scss'
 
-function Tesseract({ isVisible, URL, date, firstItem, lastItem, input }) {
+function Tesseract({
+  isVisible,
+  URL,
+  date,
+  firstItem,
+  lastItem,
+  input,
+  changeInput,
+}) {
   const worker = createWorker({
     logger: (m) => console.log(m),
   })
@@ -27,14 +35,15 @@ function Tesseract({ isVisible, URL, date, firstItem, lastItem, input }) {
       last: lastItem,
       text: ocr,
     })
-    let url = window.location.href
-    window.location.href = url + '/'
+    let url = window.location.href.split('home', 1)
+    changeInput()
+    window.location.href = url
   }
 
   const showStatus = () => {
     if (ocr !== 'Recognizing...' && input) {
       return (
-        <div>
+        <div className='uploaded'>
           <p>Image Data Uploaded</p>
           <button onClick={getApi}>Submit!</button>
         </div>
@@ -43,7 +52,7 @@ function Tesseract({ isVisible, URL, date, firstItem, lastItem, input }) {
   }
 
   const itsLoading = () => {
-    if (ocr === 'Recognizing...' && true) {
+    if (ocr === 'Recognizing...' && input) {
       return (
         <div>
           <p>Image is still processing...</p>

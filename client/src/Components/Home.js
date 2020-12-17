@@ -69,6 +69,12 @@ class Home extends Component {
     })
   }
 
+  changeInput = () => {
+    this.setState({
+      showInput: false,
+    })
+  }
+
   render() {
     console.log(this.state.date)
     return (
@@ -98,6 +104,7 @@ class Home extends Component {
             firstItem={this.state.firstItem}
             lastItem={this.state.lastItem}
             input={this.state.showInput}
+            changeInput={this.changeInput}
           />
           <Receipt
             isVisible={this.state.isReceiptVisible}
