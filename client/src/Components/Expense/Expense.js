@@ -46,18 +46,26 @@ class Expense extends Component {
     } else {
       return (
         <>
-          <form action=''>
-            <label htmlFor='search'>search from date</label>
-            <input
-              type='text'
-              name='date'
-              id='date'
-              placeholder='mm/dd/yy'
-              onChange={this.onDateChange}
-              value={this.state.date}
-            />
-            <button onClick={this.getAxios}>Submit</button>
-          </form>
+          <div>
+            <form action='' className='expense'>
+              <label htmlFor='search' lassName='label'>
+                Search according to the date
+              </label>
+              <input
+                type='text'
+                name='date'
+                id='date'
+                placeholder='mm/dd/yy'
+                onChange={this.onDateChange}
+                value={this.state.date}
+                className='label__input'
+              />
+              <button onClick={this.getAxios} className='button__login'>
+                Submit
+              </button>
+            </form>
+          </div>
+
           <div>
             {this.state.expense.map((i) => (
               <p>{i}</p>

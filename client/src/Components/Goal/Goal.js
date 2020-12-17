@@ -50,6 +50,7 @@ class Goal extends Component {
     event.preventDefault()
     this.setState({ updateBudget: false })
     axios.post('http://localhost:8080/goal', this.state)
+    window.location.reload()
   }
   showUpdate = () => {
     this.setState({ updateBudget: true })
